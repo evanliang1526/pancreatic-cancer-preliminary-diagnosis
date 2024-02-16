@@ -2,14 +2,10 @@ import os
 import numpy as np
 import nibabel as nib
 import skimage.transform as skTrans
-
-# Specify the directories
 input_cancer = "C:\\Users\\junpa\\OneDrive\\Desktop\\Cancer"
 output_cancer = "C:\\Users\\junpa\\OneDrive\\Desktop\\Processed_Cancer"
 input_control = "C:\\Users\\junpa\\OneDrive\\Desktop\\Control"
 output_control = "C:\\Users\\junpa\\OneDrive\\Desktop\\Processed_Control"
-
-# Process and save Cancer images
 for filename in os.listdir(input_cancer):
     full_path = os.path.join(input_cancer, filename)
     im = nib.load(full_path).get_fdata()
@@ -19,8 +15,6 @@ for filename in os.listdir(input_cancer):
     output_filename = os.path.splitext(filename)[0] + '_processed.nii'
     output_path = os.path.join(output_cancer, output_filename)
     nib.save(nib.Nifti1Image(grayscale_volume, np.eye(4)), output_path)
-
-# Process and save Control images
 for filename in os.listdir(input_control):
     full_path = os.path.join(input_control, filename)
     im = nib.load(full_path).get_fdata()
